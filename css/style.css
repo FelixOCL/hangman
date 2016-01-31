@@ -1,0 +1,129 @@
+#hangman
+{
+	position: relative;
+	border: 1px solid black;
+	height: 450px;
+	width: 400px;
+	background: rgba(238,238,238, 0.6);
+	margin: auto;
+	padding-left: 25px;
+	line-height: 4em;
+
+	font-size: 32px;
+	z-index: 101;
+}
+
+#hangman legend
+{
+	position: relative;
+	left: -350px;
+}
+
+#btnNouveau
+{
+	position: static;
+}
+
+#mot
+{
+	font-size: 36px;
+	letter-spacing: 5px
+}
+
+#badletters
+{
+	border: 1px dashed rgba(127,0,0,0.8);
+	color: red;
+	font-size: 28px;
+	letter-spacing: 5px;
+	position:absolute;
+	bottom:50px;
+	width: 325px;
+	height: 75px;
+}
+
+#badletters legend
+{
+	font-size: 18px;
+	position:absolute;
+	bottom:25px;
+	left: 30px;
+}
+
+#txtChances
+{
+	border: 1px dashed black;
+	line-height: 32px;
+	padding: 25px;
+	right: 35px;
+	top: 125px;
+	position: absolute;
+}
+
+#txtChances legend
+{
+
+	top: -35px;
+	left: -50px;
+	position: absolute;
+
+}
+
+#thisIndex
+{
+	position: absolute;
+	top: 200px;
+	display: table-cell;
+	letter-spacing: 2px;
+}
+
+#thisHiddenLetter
+{
+	position: absolute;
+	top: 150px;
+	display: table-cell;
+	letter-spacing: 2px;
+}
+
+#thisWordLetter
+{
+	position: absolute;
+	top: 150px;
+	display: table-cell;
+	letter-spacing: 2px;
+}
+
+.thisLetter
+{
+
+	top: 150px;
+	display: table-cell;
+	letter-spacing: 5px;
+}
+
+#message
+{
+	font-size: 18px;
+	position: absolute;
+	bottom:-350px;
+	left: 325px;
+	width: 250px;
+	height:350px;
+	line-height: 1em;
+}
+
+#message legend
+{
+	position: relative;
+		left: -325px;
+}
+
+body
+{ 
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background: no-repeat;
+	background-position: 100 115;
+} 

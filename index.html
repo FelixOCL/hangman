@@ -1,0 +1,136 @@
+<html>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<head>
+		<title>
+			Hang Man
+		</title>
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+		<script src="./js/jquery-2.1.4.min.js"></script>
+		<script src="./js/hangman.js"></script>
+		<script>
+			var myRand;
+			var nouveau = 0;
+
+			$( document ).ready(function() 
+			{
+
+				clearGame();
+				//background: url('images/body-bg.jpg') no-repeat center center fixed;
+				$('#btnNouveau').on('click', function()
+				{
+					nouvellePartie();
+				});
+
+				//si on tape une lettre la chercher dans le mot et redessiner
+				$( document ).keypress(function(event) 
+				{
+					isWordDiscorvered();
+					//si on a appuyé sur le bouton nouvelle partie
+					if(nouveau != 0)
+					{
+alert(mesChances);
+						if(mesChances < 1 && winning != 1)
+						{
+							$('#message').append("VOUS AVEZ PERDU!!");
+							lostWord();
+							return false;
+						}
+						//if letter has already been pressed
+						if(!checkArray(event))
+						{
+							return;
+						}
+						//alert("ok array checked it's a new letter");
+
+						if(checkKey(event) == true)
+						{
+							//todo a function to check if all letters are shown.
+
+						}
+						else
+						{
+							//when letters are wrong
+							addLetter(event);
+							mesChances = mesChances - 1;
+							showChances();						
+						}
+					}
+				});
+				
+
+			});
+
+			function nouvellePartie()
+			{
+
+				newGame();
+				nouveau = 1;
+				readFile();
+
+				//get random number
+				myRand = Math.floor(Math.random()*55);
+
+				//getting word
+				getWord(myRand);
+				//alert(myWord);
+
+				showWord();
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<div id="hangman">
+			<legend>HANGMAN</legend>
+			
+			<div id="txtChances">
+				<legend>Chances</legend>
+				
+
+			</div>
+			
+			<div id="badLetters">
+				<legend>LETTRES MANQUÉES</legend>
+				
+
+			</div>
+
+<!--
+	Contains indexes for letters
+			<div id="thisIndex">
+
+			</div>
+
+-->
+<!--
+	Contains showing letters
+-->
+			<div id="divWordLetter">
+
+			</div>
+
+<!--
+	Contain hidden letters (_)
+-->
+			<div id="thisHiddenLetter">
+
+			</div>
+
+			<div id="message">
+				<legend>Communications</legend>
+
+			</div>
+
+		</div>
+
+		<button id="btnNouveau">NOUVELLE PARTIE</button>
+
+		<div id="bg">
+
+		</div>
+
+	</body>
+
+</html>
