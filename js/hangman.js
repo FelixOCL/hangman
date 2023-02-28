@@ -1,4 +1,5 @@
 var myWord;
+var myRand;
 var letterArray = '';
 var lettreExiste = 0;
 var wordFound = [];
@@ -20,21 +21,9 @@ function readFile()
 function getWord(randomNumber)
 {
 	myWord = fileByLines[randomNumber].toUpperCase();
+	myWord =  myWord.slice(0, -1);
 }
 
-function showWord()
-{
-	//alert("show length" + myWord.length);
-
-	for(i = 0; i < myWord.length; i++)
-	{
-		//$('#thisIndex').append('' + i);
-		$('#divWordLetter').append("<div class='thisLetter'>"+ myWord[i] + '</div> ');
-		$('#thisHiddenLetter').append('_ ');
-		wordFound[i] = 0;
-	}
-	$('.thisLetter').css('opacity', 0);
-}
 
 function checkArray(key)
 {
@@ -46,20 +35,21 @@ function checkArray(key)
 	if(!(letterArray.indexOf(thisLetter) > -1))
 	{
 		letterArray += thisLetter + ",";
+
 		return true
 	}
 	else
 	{
 		return false;
 	}
-
+	isWordDiscorvered();
 }
 
 function checkKey(key)
 {
 
 	var index = (myWord.indexOf(thisLetter));
-	var letterItem;
+	//var letterItem;
 	//Check if key is in the word
 	//console.log('Do we found something in the word?', myWord.indexOf(thisLetter) > -1);
 	if (key.which >= 200 && key.which <=203)
@@ -72,9 +62,10 @@ function checkKey(key)
 		{
 			if (myWord[i] === thisLetter)
 			{
-
-				//alert("this letter ok" + i);
+checkArray(key);
+				alert("this letter ok " + i);
 				$("div.thisLetter:eq(" + i + ")").css('opacity', 1);
+				
 				wordFound[i] = '1';
 
 			}
@@ -85,6 +76,7 @@ function checkKey(key)
 	else
 	{
 		return false;
+
 	}
 
 
@@ -96,29 +88,15 @@ function addLetter(key)
 	$('#badLetters').append(thisLetter);
 }
 
-function showChances()
-{
-	//alert(mesChances);
-	if (mesChances == 0)
-	{
-		$('#txtChances').css('color','red');
-		$('#txtChances').html("<legend>Chances</legend>" + mesChances);
-	}
-	else if (mesChances < 0) 
-	{
-		return false;
-	}
-	//alert('./img/hangman0' + mesChances + '.png');
-	$('body').css('background-image', 'url("./img/hangman0' + mesChances + '.png")');
-	$('#txtChances').html("<legend>Chances</legend>" + mesChances);
 
-}
 
 function newGame()
 {
 
 	clearGame();
 	showChances();
+	showWord();
+	document.activeElement.blur();
 
 }
 
@@ -137,6 +115,42 @@ function clearGame()
 	mesChances = 7;
 }
 
+function showChances()
+{
+	//alert(mesChances);
+	if (mesChances == 0)
+	{
+		$('#txtChances').css('color','red');
+		$('#txtChances').html("<legend>Chances</legend>" + mesChances);
+		$('#message').html("<legend>Partie terminée, le mot était: </legend>" + myWord);
+		
+	}
+	else if (mesChances < 0) 
+	{
+		return false;
+	}
+	//alert('./img/hangman0' + mesChances + '.png');
+	$('body').css('background-image', 'url("./img/hangman0' + mesChances + '.png")');
+	$('#txtChances').html("<legend>Chances</legend>" + mesChances);
+
+}
+
+function showWord()
+{
+	//alert("show length " + myWord.length);
+
+	for(i = 0; i < myWord.length; i++)
+	{
+		//$('#thisIndex').append('' + i);
+		$('#divWordLetter').append("<div class='thisLetter'>"+ myWord[i] + '</div> ');
+		$('#thisHiddenLetter').append('_ ');
+
+		wordFound[i] = 0;
+	}
+	$('.thisLetter').css('opacity', 0);
+	//alert("show again lenght " + myWord.length);
+}
+
 function lostWord()
 {
 
@@ -152,8 +166,10 @@ function lostWord()
 
 function isWordDiscorvered()
 {
-	//$('#message').html(wordFound);
+	//alert(myWord.length);
+	$('#message').html(wordFound);
 	winning = 1;
+
 	for(var i = 0; i <= myWord.length; i++)
 	{
 		if(wordFound[i] === 0)
