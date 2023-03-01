@@ -63,9 +63,9 @@
 #txtChances legend
 {
 
-	top: -35px;
+	top: -15px;
 	left: -50px;
-	position: absolute;
+	position: relative;
 
 }
 
@@ -90,7 +90,8 @@
 	position: absolute;
 	top: 150px;
 	display: table-cell;
-	letter-spacing: 2px;
+	letter-spacing: 7px;
+	padding: 5px;
 }
 
 .thisLetter
@@ -98,7 +99,8 @@
 
 	top: 150px;
 	display: table-cell;
-	letter-spacing: 5px;
+	letter-spacing: 7px;
+	padding: 4px;
 }
 
 #message
@@ -114,16 +116,19 @@
 
 #message legend
 {
-	position: relative;
+	position: absolute;
 		left: -325px;
 }
 
 body
 { 
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
     -moz-background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     background: no-repeat;
-	background-position: 100 115;
+	background-position: 150px 250px;
+	
 } 

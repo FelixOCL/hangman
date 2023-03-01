@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
 	<head>
@@ -10,12 +10,12 @@
 		<script src="./js/hangman.js"></script>
 		<script>
 			var myRand;
-			var nouveau = 0;
+
 
 			$( document ).ready(function() 
 			{
 
-				clearGame();
+				//enlevé 1-03 clearGame();
 				//background: url('images/body-bg.jpg') no-repeat center center fixed;
 				$('#btnNouveau').on('click', function()
 				{
@@ -25,7 +25,6 @@
 				//si on tape une lettre la chercher dans le mot et redessiner
 				$( document ).keypress(function(event) 
 				{
-					isWordDiscorvered();
 					//si on a appuyé sur le bouton nouvelle partie
 					if(nouveau != 0)
 					{
@@ -46,7 +45,9 @@
 						if(checkKey(event) == true)
 						{
 							//todo a function to check if all letters are shown.
-
+							//alert("youpi");
+							checkArray(event);
+							isWordDiscorvered();
 						}
 						else
 						{
@@ -65,12 +66,17 @@
 			{
 
 				newGame();
+				//ici on devrait avoir vidé l'écran et préparé la nouvelle partie.
+				
 				nouveau = 1;
+				
+				//lire le fichier - read file
 				readFile();
+				//alert("la partie est réinitialisée et on commence à préparer la prochaine");
 
 				//get random number
 				myRand = Math.floor(Math.random()*55);
-				alert(myRand);
+
 				//getting word
 				getWord(myRand);
 				
@@ -83,10 +89,10 @@
 
 	<body>
 		<div id="hangman">
-			<legend>HANGMAN</legend>
+			<legend>Le Pendu</legend>
 			
 			<div id="txtChances">
-				<legend>Chances</legend>
+				<legend>Vos Chances</legend>
 				
 
 			</div>
